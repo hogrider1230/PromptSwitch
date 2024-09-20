@@ -1315,7 +1315,8 @@ class PromptCLIP(nn.Module):
         nn.init.normal_(self.clip.vision_model.encoder.prompt_embedding, mean=0.0, 
             std=clip_config.vision_config.hidden_size**-0.5 * \
                 clip_config.vision_config.initializer_range)
-        nn.init.zeros_(self.clip.vision_model.attn.out_proj.weight.data)
+        # 问题1：对称性问题
+        nn.init.xavier_uniform_(self.clip.vision_model.attn.out_proj.weight.data)
         nn.init.zeros_(self.clip.vision_model.attn.out_proj.bias.data)
 
     def forward_captioner(self, video_features, tokens):

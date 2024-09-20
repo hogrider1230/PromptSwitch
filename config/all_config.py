@@ -14,7 +14,7 @@ class AllConfig(Config):
 
         # data parameters
         parser.add_argument('--dataset_name', type=str, default='MSRVTT', help="Dataset name")
-        parser.add_argument('--videos_dir', type=str, default='data/MSRVTT/vids', help="Location of videos")
+        parser.add_argument('--videos_dir', type=str, default='data/MSRVTT/video', help="Location of videos")
         parser.add_argument('--msrvtt_train_file', type=str, default='9k')
         parser.add_argument('--num_frames', type=int, default=6)
         parser.add_argument('--num_test_frames', type=int, default=12)
@@ -29,7 +29,7 @@ class AllConfig(Config):
 
         # experiment parameters
         parser.add_argument('--exp_name', type=str, required=True, help="Name of the current experiment")
-        parser.add_argument('--output_dir', type=str, default='./outputs')
+        parser.add_argument('--output_dir', type=str, default='E:/dwj/PromptSwitch output')
         parser.add_argument('--save_every', type=int, default=1, help="Save model every n epochs")
         parser.add_argument('--log_step', type=int, default=10, help="Print training log every n steps")
         parser.add_argument('--evals_per_epoch', type=int, default=10, help="Number of times to evaluate per epoch")

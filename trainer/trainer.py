@@ -58,6 +58,8 @@ class Trainer(BaseTrainer):
             model_output = self.model(data)
             text_embeds = model_output['text_features']
             video_embeds_pooled = model_output['video_features_pooled']
+            # text_embeds = model_output[0]
+            # video_embeds_pooled = model_output[1]
             sims = sim_matrix_training(text_embeds, video_embeds_pooled, self.pooling_type)
             loss = self.loss['clip'](sims, self.model.clip.logit_scale)
 

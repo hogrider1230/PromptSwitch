@@ -34,7 +34,7 @@ def main():
         torch.backends.cudnn.benchmark = False
 
     train_data_loader = DataFactory.get_data_loader(config, split_type='train')
-    valid_data_loader  = DataFactory.get_data_loader(config, split_type='test')
+    valid_data_loader = DataFactory.get_data_loader(config, split_type='test')
     model = ModelFactory.get_model(config)
 
     optimizer_grouped_params = [

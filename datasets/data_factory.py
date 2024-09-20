@@ -7,6 +7,7 @@ from datasets.msrvtt_dataset import MSRVTTDataset
 from datasets.msvd_dataset import MSVDDataset
 from datasets.lsmdc_dataset import LSMDCDataset
 from datasets.anet_dataset import ANetDataset
+from datasets.tvpreid_dataset import TVPReidDataset
 
 
 class DataFactory:
@@ -61,6 +62,26 @@ class DataFactory:
                 return DataLoader(dataset, batch_size=config.test_batch_size,
                             shuffle=False, num_workers=config.num_workers)
 
+        elif config.dataset_name == 'TVPReid':
+            if split_type == 'train':
+                dataset = TVPReidDataset(config, split_type, train_img_tfms)
+                return DataLoader(dataset, batch_size=config.batch_size,
+                                  shuffle=True, num_workers=config.num_workers,
+                                  collate_fn=collate_fn)
+            else:
+                dataset = TVPReidDataset(config, split_type, test_img_tfms)
+                return DataLoader(dataset, batch_size=config.test_batch_size,
+                                  shuffle=False, num_workers=config.num_workers)
+        elif config.dataset_name == 'TVPReidDuke':
+            if split_type == 'train':
+                dataset = DukeDataset(config, split_type, train_img_tfms)
+                return DataLoader(dataset, batch_size=config.batch_size,
+                                  shuffle=True, num_workers=config.num_workers,
+                                  collate_fn=collate_fn)
+            else:
+                dataset = DukeDataset(config, split_type, test_img_tfms)
+                return DataLoader(dataset, batch_size=config.test_batch_size,
+                                  shuffle=False, num_workers=config.num_workers)
         else:
             raise NotImplementedError
 
